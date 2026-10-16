@@ -1,0 +1,68 @@
+{
+  "id": "usr-88912",
+  "name": "Deniz Yılmaz",
+  "email": "deniz.yilmaz@nova.com.tr",
+  "phone": "+90 (532) 123 45 67",
+  "tier": "Nova Black Member",
+  "points": 2450,
+  "pointsValue": 245,
+  "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80",
+  "preferredCity": "İstanbul",
+  "preferredStoreId": "store-ist-01",
+  "addresses": [
+    {
+      "id": "addr-1",
+      "title": "Ev",
+      "city": "İstanbul",
+      "district": "Beşiktaş",
+      "fullAddress": "Nisbetiye Mah. Aytar Cad. No: 18 D: 5, Levent",
+      "isDefault": true
+    },
+    {
+      "id": "addr-2",
+      "title": "İş",
+      "city": "İstanbul",
+      "district": "Sarıyer",
+      "fullAddress": "Büyükdere Cad. No: 209 Plaza Kat: 14, Maslak",
+      "isDefault": false
+    }
+  ],
+  "recentOrders": [
+    {
+      "id": "ORD-2026-9941",
+      "date": "14 Ekim 2026",
+      "status": "Kargoda",
+      "statusStep": 3,
+      "total": 6499,
+      "items": [
+        {
+          "productId": "prod-01",
+          "name": "NovaSound Horizon Pro Kablosuz Kulaklık",
+          "price": 6499,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=400&q=80"
+        }
+      ],
+      "deliveryMethod": "Aynı Gün Express Kargo"
+    },
+    {
+      "id": "ORD-2026-8712",
+      "date": "28 Eylül 2026",
+      "status": "Teslim Edildi",
+      "statusStep": 4,
+      "total": 1150,
+      "items": [
+        {
+          "productId": "prod-11",
+          "name": "Soho Mat Siyah Termos Bardak 500ml",
+          "price": 1150,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=400&q=80"
+        }
+      ],
+      "deliveryMethod": "Zorlu Center Mağazadan Teslim"
+    }
+  ],
+  "favoriteProductIds": ["prod-01", "prod-04"],
+  "savedStoreIds": ["store-ist-01", "store-ist-02"]
+}

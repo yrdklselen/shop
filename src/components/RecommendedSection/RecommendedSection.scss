@@ -1,0 +1,84 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.recommended-section {
+  padding: 3.5rem 0;
+  position: relative;
+
+  .recommended-banner-box {
+    @include modern-card;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    background: linear-gradient(
+      135deg,
+      rgba(99, 102, 241, 0.12) 0%,
+      rgba(168, 85, 247, 0.08) 50%,
+      rgba(6, 182, 212, 0.08) 100%
+    );
+    border-color: var(--border-accent);
+
+    .banner-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+
+      .user-greeting-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.35rem 0.85rem;
+        border-radius: 9999px;
+        background: var(--bg-surface);
+        border: 1px solid var(--border-light);
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: var(--primary);
+      }
+
+      .ai-tag {
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: #10b981;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+    }
+
+    .banner-headline {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-top: 0.75rem;
+      margin-bottom: 0.5rem;
+
+      @include mobile {
+        font-size: 1.4rem;
+      }
+    }
+
+    .banner-subtext {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      max-width: 600px;
+    }
+  }
+
+  .recommended-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+
+    @include desktop {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    @include tablet {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include mobile {
+      grid-template-columns: 1fr;
+    }
+  }
+}

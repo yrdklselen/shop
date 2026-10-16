@@ -1,0 +1,117 @@
+@use 'variables' as *;
+
+// ==========================================
+// SCSS MIXINS & TEXTURES
+// ==========================================
+
+// Responsive Breakpoints
+@mixin mobile {
+  @media (max-width: #{$breakpoint-sm}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: #{$breakpoint-md}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$breakpoint-lg}) {
+    @content;
+  }
+}
+
+@mixin wide {
+  @media (min-width: #{$breakpoint-xl}) {
+    @content;
+  }
+}
+
+// Glassmorphism Texture
+@mixin glass($blur: 16px, $bg: var(--bg-glass), $border: var(--border-glass)) {
+  background: $bg;
+  backdrop-filter: blur($blur);
+  -webkit-backdrop-filter: blur($blur);
+  border: 1px solid $border;
+}
+
+// Modern Card Texture with Micro-Glow
+@mixin modern-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--border-light);
+  border-radius: 18px;
+  box-shadow: var(--shadow-md);
+  transition: transform $transition-normal, box-shadow $transition-normal, border-color $transition-normal, background-color $transition-normal;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    pointer-events: none;
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg), var(--shadow-glow);
+    border-color: var(--border-accent);
+    background: var(--bg-card-hover);
+  }
+}
+
+// Gradient Text Effect
+@mixin gradient-text($gradient: $gradient-brand) {
+  background: $gradient;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+// Subtle Dot Grid Texture
+@mixin dot-texture {
+  background-image: radial-gradient(var(--grid-bg-line) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+// Flex Layout Helpers
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// Custom Smooth Scrollbar
+@mixin custom-scrollbar($width: 6px) {
+  &::-webkit-scrollbar {
+    width: $width;
+    height: $width;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--border-medium);
+    border-radius: 10px;
+
+    &:hover {
+      background: var(--primary);
+    }
+  }
+}

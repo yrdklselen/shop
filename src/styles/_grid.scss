@@ -1,0 +1,124 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// ==========================================
+// NOVA GRID SYSTEM - CSS GRID ARCHITECTURE
+// ==========================================
+
+.grid-container {
+  width: 100%;
+  max-width: 1380px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+
+  @include mobile {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+.grid-12 {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 1.5rem;
+
+  @include mobile {
+    gap: 1rem;
+  }
+}
+
+// Column spans for standard 12-column grid
+@for $i from 1 through 12 {
+  .col-#{$i} {
+    grid-column: span #{$i} / span #{$i};
+  }
+}
+
+// Tablet Responsive Spans (min-width: 768px)
+@media (min-width: #{$breakpoint-md}) {
+  @for $i from 1 through 12 {
+    .col-md-#{$i} {
+      grid-column: span #{$i} / span #{$i};
+    }
+  }
+}
+
+// Desktop Responsive Spans (min-width: 1024px)
+@media (min-width: #{$breakpoint-lg}) {
+  @for $i from 1 through 12 {
+    .col-lg-#{$i} {
+      grid-column: span #{$i} / span #{$i};
+    }
+  }
+}
+
+// Specialized Layout Grids
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.75rem;
+
+  @include mobile {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1rem;
+  }
+}
+
+.recommended-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 1.5rem;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+.stores-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.product-detail-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 2.5rem;
+
+  @include tablet {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+.profile-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}

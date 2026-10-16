@@ -1,0 +1,37 @@
+[
+  {
+    "id": "all",
+    "name": "Tüm Koleksiyon",
+    "icon": "Layers",
+    "count": 16,
+    "slug": "all"
+  },
+  {
+    "id": "electronics",
+    "name": "Teknoloji & Akıllı Yaşam",
+    "icon": "Smartphone",
+    "count": 5,
+    "slug": "electronics"
+  },
+  {
+    "id": "audio",
+    "name": "Ses & Akustik",
+    "icon": "Headphones",
+    "count": 3,
+    "slug": "audio"
+  },
+  {
+    "id": "fashion",
+    "name": "Moda & Aksesuar",
+    "icon": "Shirt",
+    "count": 4,
+    "slug": "fashion"
+  },
+  {
+    "id": "home-gourmet",
+    "name": "Ev & Gurme",
+    "icon": "Coffee",
+    "count": 4,
+    "slug": "home-gourmet"
+  }
+]

@@ -1,0 +1,406 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.product-detail-modal-card {
+  width: 100%;
+  max-width: 960px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-medium);
+  border-radius: 24px;
+  box-shadow: var(--shadow-xl), var(--shadow-glow);
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  @include custom-scrollbar;
+  animation: modalPop 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+  .btn-modal-close {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    z-index: 10;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    @include flex-center;
+    background: var(--bg-surface-alt);
+    border: 1px solid var(--border-light);
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all $transition-fast;
+
+    &:hover {
+      color: var(--text-primary);
+      border-color: var(--primary);
+      transform: rotate(90deg);
+    }
+  }
+
+  .detail-modal-body {
+    padding: 2.25rem;
+
+    @include mobile {
+      padding: 1.25rem;
+    }
+  }
+
+  // Two Column Detail Grid
+  .detail-main-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.15fr;
+    gap: 2.5rem;
+    margin-bottom: 2.5rem;
+
+    @include tablet {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  }
+
+  // Left: Gallery
+  .detail-gallery-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    .main-image-frame {
+      width: 100%;
+      height: 380px;
+      border-radius: 20px;
+      overflow: hidden;
+      background: var(--bg-surface-alt);
+      border: 1px solid var(--border-light);
+      position: relative;
+
+      @include mobile {
+        height: 280px;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .thumbnails-row {
+      display: flex;
+      gap: 0.75rem;
+
+      .thumb-btn {
+        width: 70px;
+        height: 70px;
+        border-radius: 12px;
+        overflow: hidden;
+        border: 2px solid transparent;
+        cursor: pointer;
+        transition: all $transition-fast;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        &.active {
+          border-color: var(--primary);
+        }
+
+        &:hover:not(.active) {
+          border-color: var(--border-medium);
+        }
+      }
+    }
+  }
+
+  // Right: Info & Actions
+  .detail-info-column {
+    display: flex;
+    flex-direction: column;
+
+    .category-badge-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .detail-title {
+      font-size: 1.8rem;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 0.75rem;
+
+      @include mobile {
+        font-size: 1.4rem;
+      }
+    }
+
+    .detail-rating-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      margin-bottom: 1.25rem;
+
+      .stars {
+        display: flex;
+        color: #f59e0b;
+      }
+
+      .rating-val {
+        font-weight: 700;
+        color: var(--text-primary);
+      }
+
+      .review-num {
+        color: var(--text-muted);
+      }
+    }
+
+    .detail-price-box {
+      padding: 1rem 1.25rem;
+      border-radius: 16px;
+      background: var(--bg-surface-alt);
+      border: 1px solid var(--border-light);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+
+      .current-price-val {
+        font-size: 2rem;
+        font-weight: 800;
+        font-family: var(--font-heading);
+        color: var(--primary);
+      }
+
+      .old-price-val {
+        font-size: 1.1rem;
+        color: var(--text-muted);
+        text-decoration: line-through;
+      }
+
+      .points-perk {
+        margin-left: auto;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: #10b981;
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+      }
+    }
+
+    .detail-description {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    // Delivery Method Selector
+    .delivery-options-box {
+      margin-bottom: 1.5rem;
+
+      .opt-title {
+        font-size: 0.82rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--text-muted);
+        margin-bottom: 0.6rem;
+      }
+
+      .delivery-options-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+
+        @include mobile {
+          grid-template-columns: 1fr;
+        }
+
+        .delivery-radio-card {
+          padding: 0.85rem;
+          border-radius: 12px;
+          border: 1px solid var(--border-light);
+          background: var(--bg-surface-alt);
+          cursor: pointer;
+          display: flex;
+          align-items: flex-start;
+          gap: 0.6rem;
+          transition: all $transition-fast;
+
+          &.selected {
+            border-color: var(--primary);
+            background: rgba(99, 102, 241, 0.08);
+          }
+
+          .del-info {
+            .del-name {
+              font-size: 0.85rem;
+              font-weight: 700;
+              color: var(--text-primary);
+            }
+            .del-desc {
+              font-size: 0.75rem;
+              color: var(--text-secondary);
+            }
+          }
+        }
+      }
+    }
+
+    // Quantity & Purchase Buttons
+    .detail-purchase-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: auto;
+
+      .qty-stepper {
+        display: flex;
+        align-items: center;
+        border-radius: 12px;
+        background: var(--bg-surface-alt);
+        border: 1px solid var(--border-light);
+        overflow: hidden;
+
+        .btn-qty {
+          width: 38px;
+          height: 42px;
+          @include flex-center;
+          color: var(--text-primary);
+          transition: background-color $transition-fast;
+
+          &:hover {
+            background: var(--border-light);
+          }
+        }
+
+        .qty-val {
+          width: 36px;
+          text-align: center;
+          font-weight: 700;
+          font-size: 0.95rem;
+        }
+      }
+
+      .btn-add-detail {
+        flex: 1;
+        height: 44px;
+        font-size: 0.95rem;
+      }
+    }
+  }
+
+  // Store Availability Section
+  .store-availability-box {
+    padding: 1.5rem;
+    border-radius: 16px;
+    background: var(--bg-surface-alt);
+    border: 1px solid var(--border-light);
+    margin-bottom: 2rem;
+
+    .avail-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+
+      .avail-title {
+        font-size: 1rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .avail-note {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+      }
+    }
+
+    .stores-pill-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 0.75rem;
+
+      .store-avail-chip {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.6rem 0.85rem;
+        border-radius: 10px;
+        background: var(--bg-surface);
+        border: 1px solid var(--border-light);
+        font-size: 0.82rem;
+
+        .chip-name {
+          font-weight: 600;
+          color: var(--text-primary);
+        }
+
+        .chip-status {
+          font-weight: 700;
+          font-size: 0.75rem;
+
+          &.in-stock {
+            color: #10b981;
+          }
+
+          &.out-stock {
+            color: var(--text-muted);
+          }
+        }
+      }
+    }
+  }
+
+  // Specs & Features Table
+  .specs-container {
+    .specs-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .specs-table {
+      width: 100%;
+      border-collapse: collapse;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border-light);
+
+      tr {
+        border-bottom: 1px solid var(--border-light);
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        &:nth-child(even) {
+          background: var(--bg-surface-alt);
+        }
+
+        td {
+          padding: 0.85rem 1.25rem;
+          font-size: 0.88rem;
+
+          &.spec-key {
+            font-weight: 600;
+            color: var(--text-secondary);
+            width: 35%;
+          }
+
+          &.spec-val {
+            font-weight: 700;
+            color: var(--text-primary);
+          }
+        }
+      }
+    }
+  }
+}
